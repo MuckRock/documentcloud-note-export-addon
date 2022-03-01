@@ -1,5 +1,5 @@
 """
-This add-on allows you to bulk export PDFs from DocumentCloud
+This add-on allows you to bulk export notes from DocumentCloud
 """
 
 import zipfile
@@ -7,18 +7,20 @@ import zipfile
 from addon import AddOn
 
 
-class PdfExport(AddOn):
-    """Export all of the selected documents in a zip file"""
+class NoteExport(AddOn):
+    """Export all of the selected documents' notes as text in a zip file"""
 
     def main(self):
         with zipfile.ZipFile("export.zip", mode="w") as archive:
             for doc_id in self.documents:
                 document = self.client.documents.get(doc_id)
-                with archive.open(f"{document.slug} - {document.id}.pdf", "w") as pdf:
-                    pdf.write(document.pdf)
+                with archive.open(f"{document.slug} - {document.id} - notes.txt", "w") as notes_file:
+                    for note in document.notes:
+                        notes_file.write(note.title + "\n")
+                        notes_file.write(note.content + "\n\n")
 
         self.upload_file(open("export.zip"))
 
 
 if __name__ == "__main__":
-    PdfExport().main()
+    NoteExport().main()
