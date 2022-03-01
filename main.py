@@ -16,8 +16,8 @@ class NoteExport(AddOn):
                 document = self.client.documents.get(doc_id)
                 with archive.open(f"{document.slug} - {document.id} - notes.txt", "w") as notes_file:
                     for note in document.notes:
-                        notes_file.write(note.title + "\n")
-                        notes_file.write(note.content + "\n\n")
+                        notes_file.write(f"{note.title}\n".encode("utf8"))
+                        notes_file.write(f"{note.content}\n\n".encode("utf8"))
 
         self.upload_file(open("export.zip"))
 
