@@ -4,4 +4,5 @@ type: object
 documents:
   - selected
 properties: {}
-
+categories:
+  - export
