@@ -1,5 +1,6 @@
 title: Note Exporter
 description: Export notes from the selected documents as text files in a zip file
+instructions: ''
 type: object
 documents:
   - selected
