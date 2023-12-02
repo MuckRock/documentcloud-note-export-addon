@@ -9,7 +9,9 @@ from documentcloud.addon import AddOn
 
 class NoteExport(AddOn):
     """Export all of the selected documents' notes as text in a zip file"""
-
+    if self.get_document_count() is None:
+            self.set_message("Please select at least one document.")
+            return
     def main(self):
         with zipfile.ZipFile("export.zip", mode="w") as archive:
             for document in self.client.documents.list(id__in=self.documents):
