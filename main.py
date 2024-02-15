@@ -17,7 +17,7 @@ class NoteExport(AddOn):
                     f"{document.slug} - {document.id} - notes.txt", "w"
                 ) as notes_file:
                     for note in document.notes:
-                        notes_file.write(f"Page number of annotation: {note.page+1}\n".encode("utf8"))
+                        notes_file.write(f"Page: {note.page+1}\n".encode("utf8"))
                         notes_file.write(f"{note.title}\n".encode("utf8"))
                         notes_file.write(f"{note.content}\n\n".encode("utf8"))
 
