@@ -20,9 +20,9 @@ class NoteExport(AddOn):
                         notes_file.write(f"Page: {note.page+1}\n".encode("utf8"))
                         notes_file.write(f"{note.title}\n".encode("utf8"))
                         notes_file.write(f"{note.content}\n".encode("utf8"))
-                        notes_file.write(f"Access level: {note.access}\n\n").encode(
+                        notes_file.write(f"Access level: {note.access}\n\n".encode(
                             "utf8"
-                        )
+                        ))
 
         self.upload_file(open("export.zip", encoding="utf-8"))
 
