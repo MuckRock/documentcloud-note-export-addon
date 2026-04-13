@@ -11,6 +11,7 @@ class NoteExport(AddOn):
 
     def main(self):
         """Export all notes as a zip file"""
+        self.client.session.headers.update({'User-Agent': 'Note Export Add-On'})
         with zipfile.ZipFile("export.zip", mode="w") as archive:
             for document in self.client.documents.list(id__in=self.documents):
                 with archive.open(
